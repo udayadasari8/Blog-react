@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 
 const Navbar = ({ onCreate }) => {
   return (
-    <div className='bg-black flex justify-between  sticky top-0 z-12'>
+    <div className='bg-black flex justify-between  sticky top-0 z-2 '>
       <div className='flex gap-2 p-2'>
         <Database size={35} color='white' />
         <h1 className='text-2xl text-green-400 font-bold'>Bloggers</h1>
       </div>
-      <div className='flex my-3 gap-2'>
+      <div className='flex my-3 mt-4 gap-2'>
         <Link to="/">
             <House color='white' size={30} />
         </Link>

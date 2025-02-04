@@ -40,10 +40,10 @@ const FormComponent = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
-      <div className="bg-green-400 p-10 rounded shadow-lg">
-        <h2 className="text-3xl font-bold mb-6">Create New Blog</h2>
+      <div className="bg-green-400 p-6 rounded shadow-lg">
+        <h2 className="text-3xl font-bold mb-2">Create New Blog</h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-6">
+          <div className="mb-4">
             <label className="block text-2xl font-bold text-black">Author Name</label>
             <input
               placeholder="Enter The Author Name"
@@ -54,7 +54,7 @@ const FormComponent = ({ isOpen, onClose, onSubmit }) => {
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <label className="block text-2xl font-bold text-black">Blog Title</label>
             <input
               placeholder="Enter The Blog Title"
@@ -65,7 +65,7 @@ const FormComponent = ({ isOpen, onClose, onSubmit }) => {
               required
             />
           </div>
-          <div className="mb-6">
+          <div className="mb-4">
             <label className="block text-2xl font-bold text-black">Blog</label>
             <textarea
               placeholder="Enter The Blog Here"

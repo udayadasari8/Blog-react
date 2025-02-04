@@ -5,6 +5,7 @@ import Suggestions from './components/Suggestions';
 import FormComponent from './components/FormComponent';
 import CardComponent from './components/CardComponent';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Mainpage from './components/Mainpage';
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -45,6 +46,7 @@ function App() {
               element={
                 <>
                   <Suggestions />
+                  <div><Mainpage/></div>
                 </>
               }
             />
