@@ -1,32 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Menu from './components/Menu';
 import Suggestions from './components/Suggestions';
 import FormComponent from './components/FormComponent';
 import CardComponent from './components/CardComponent';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import BlogDetail from './components/BlogDetail';
 import Mainpage from './components/Mainpage';
 
 function App() {
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const [blogs, setBlogs] = useState([]);
+  const [isFormOpen, setIsFormOpen] = useState(false); // Track if the form is open
 
   useEffect(() => {
     const existingBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
     setBlogs(existingBlogs);
   }, []);
-
-  const handleCreateClick = () => {
-    setIsFormOpen(true);
-  };
-
-  const handleCloseForm = () => {
-    setIsFormOpen(false);
-  };
-
-  const handleFormSubmit = (newBlog) => {
-    setBlogs([...blogs, newBlog]);
-  };
 
   const handleDelete = (index) => {
     const updatedBlogs = blogs.filter((_, i) => i !== index);
@@ -34,22 +23,38 @@ function App() {
     localStorage.setItem('blogs', JSON.stringify(updatedBlogs));
   };
 
+  const handleCreate = () => {
+    setIsFormOpen(true); // Open the form when the button is clicked
+  };
+
+  const handleCloseForm = () => {
+    setIsFormOpen(false); // Close the form
+  };
+
+  const handleSubmit = (newBlog) => {
+    setBlogs((prevBlogs) => [...prevBlogs, newBlog]);
+    localStorage.setItem('blogs', JSON.stringify([...blogs, newBlog]));
+  };
+
   return (
     <BrowserRouter>
-      <Navbar onCreate={handleCreateClick} />
+      <Navbar onCreate={handleCreate} /> {/* Pass handleCreate to Navbar */}
       <div className="flex gap-0 p-0">
         <Menu />
         <div>
           <Routes>
+            {/* Home route to show Mainpage */}
             <Route
               path="/"
               element={
                 <>
                   <Suggestions />
-                  <div><Mainpage/></div>
+                  <Mainpage />
                 </>
               }
             />
+
+            {/* Route to show all blogs */}
             <Route
               path="/blogs"
               element={
@@ -57,6 +62,7 @@ function App() {
                   {blogs.map((blog, index) => (
                     <CardComponent
                       key={index}
+                      index={index}
                       blog={blog}
                       onDelete={() => handleDelete(index)}
                     />
@@ -64,10 +70,24 @@ function App() {
                 </div>
               }
             />
+
+            {/* Route to show Blog Detail */}
+            <Route
+              path="/blogs/:index"
+              element={<BlogDetail blogs={blogs} />}
+            />
           </Routes>
         </div>
       </div>
-      <FormComponent isOpen={isFormOpen} onClose={handleCloseForm} onSubmit={handleFormSubmit} />
+
+      {/* Show the form when isFormOpen is true */}
+      {isFormOpen && (
+        <FormComponent
+          isOpen={isFormOpen}
+          onClose={handleCloseForm}
+          onSubmit={handleSubmit}
+        />
+      )}
     </BrowserRouter>
   );
 }

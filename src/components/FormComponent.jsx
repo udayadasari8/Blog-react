@@ -1,27 +1,29 @@
 import React, { useState, useEffect } from 'react';
 
-const FormComponent = ({ isOpen, onClose, onSubmit }) => {
+const FormComponent = ({ isOpen, onClose, onSubmit, blogToEdit }) => {
   const [author, setAuthor] = useState('');
   const [blogName, setBlogName] = useState('');
   const [blogData, setBlogData] = useState('');
   const [image, setImage] = useState(null);
 
   useEffect(() => {
-    if (!isOpen) {
-      setAuthor('');
-      setBlogName('');
-      setBlogData('');
-      setImage(null);
+    if (blogToEdit) {
+      const { author, blogName, blogData, image } = blogToEdit;
+      setAuthor(author);
+      setBlogName(blogName);
+      setBlogData(blogData);
+      setImage(image);
     }
-  }, [isOpen]);
+  }, [blogToEdit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newBlog = { author, blogName, blogData, image };
+    const updatedBlog = { author, blogName, blogData, image };
+
     const existingBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
-    existingBlogs.push(newBlog);
+    existingBlogs.push(updatedBlog);
     localStorage.setItem('blogs', JSON.stringify(existingBlogs));
-    onSubmit(newBlog);
+    onSubmit(updatedBlog);
     onClose();
   };
 
@@ -41,7 +43,7 @@ const FormComponent = ({ isOpen, onClose, onSubmit }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60">
       <div className="bg-green-400 p-6 rounded shadow-lg">
-        <h2 className="text-3xl font-bold mb-2">Create New Blog</h2>
+        <h2 className="text-3xl font-bold mb-2">{blogToEdit ? 'Edit Blog' : 'Create New Blog'}</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-2xl font-bold text-black">Author Name</label>
