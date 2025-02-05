@@ -10,7 +10,7 @@ import Mainpage from './components/Mainpage';
 
 function App() {
   const [blogs, setBlogs] = useState([]);
-  const [isFormOpen, setIsFormOpen] = useState(false); // Track if the form is open
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     const existingBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
@@ -24,11 +24,11 @@ function App() {
   };
 
   const handleCreate = () => {
-    setIsFormOpen(true); // Open the form when the button is clicked
+    setIsFormOpen(true); 
   };
 
   const handleCloseForm = () => {
-    setIsFormOpen(false); // Close the form
+    setIsFormOpen(false); 
   };
 
   const handleSubmit = (newBlog) => {
@@ -38,12 +38,12 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Navbar onCreate={handleCreate} /> {/* Pass handleCreate to Navbar */}
+      <Navbar onCreate={handleCreate} /> 
       <div className="flex gap-0 p-0">
         <Menu />
         <div>
           <Routes>
-            {/* Home route to show Mainpage */}
+           
             <Route
               path="/"
               element={
@@ -54,11 +54,11 @@ function App() {
               }
             />
 
-            {/* Route to show all blogs */}
+            
             <Route
               path="/blogs"
               element={
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap gap-4 mx-8 justify-center  md:grid-cols-3 py-6 ">
                   {blogs.map((blog, index) => (
                     <CardComponent
                       key={index}
@@ -71,16 +71,16 @@ function App() {
               }
             />
 
-            {/* Route to show Blog Detail */}
+           
             <Route
               path="/blogs/:index"
-              element={<BlogDetail blogs={blogs} />}
+              element={<BlogDetail blogs={blogs} onDelete={handleDelete} />}
             />
           </Routes>
         </div>
       </div>
 
-      {/* Show the form when isFormOpen is true */}
+      
       {isFormOpen && (
         <FormComponent
           isOpen={isFormOpen}

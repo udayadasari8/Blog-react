@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
 
 const FormComponent = ({ isOpen, onClose, onSubmit, blogToEdit }) => {
   const [author, setAuthor] = useState('');
   const [blogName, setBlogName] = useState('');
   const [blogData, setBlogData] = useState('');
-  const [image, setImage] = useState(null);
+  const [imageLink, setImageLink] = useState('');
 
   useEffect(() => {
     if (blogToEdit) {
@@ -12,30 +13,24 @@ const FormComponent = ({ isOpen, onClose, onSubmit, blogToEdit }) => {
       setAuthor(author);
       setBlogName(blogName);
       setBlogData(blogData);
-      setImage(image);
+      setImageLink(image);
     }
   }, [blogToEdit]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedBlog = { author, blogName, blogData, image };
+    const updatedBlog = { author, blogName, blogData, image: imageLink };
 
     const existingBlogs = JSON.parse(localStorage.getItem('blogs')) || [];
     existingBlogs.push(updatedBlog);
     localStorage.setItem('blogs', JSON.stringify(existingBlogs));
     onSubmit(updatedBlog);
     onClose();
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+    Swal.fire({
+      title: "Good job!",
+      text: "You created your Blog!",
+      icon: "success"
+    });
   };
 
   if (!isOpen) return null;
@@ -78,12 +73,14 @@ const FormComponent = ({ isOpen, onClose, onSubmit, blogToEdit }) => {
             ></textarea>
           </div>
           <div className="mb-6">
-            <label className="block text-2xl font-bold text-black">Upload Image</label>
+            <label className="block text-2xl font-bold text-black">Image Link</label>
             <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageChange}
+              placeholder="Enter The Image Link"
+              type="text"
+              value={imageLink}
+              onChange={(e) => setImageLink(e.target.value)}
               className="w-full p-3 my-2 border border-black rounded"
+              required
             />
           </div>
           <div className="flex justify-end">

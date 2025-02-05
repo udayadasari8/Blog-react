@@ -18,6 +18,21 @@ export const Mainpage = () => {
             description: "By Luke Ervin",
             image: "https://blogstorage.s3.amazonaws.com/uploads/cache/13/b1/13b1124281af41a191d4a568c555e003.jpg",
         },
+        {
+            title: "Rohit Sharma and Virat Kohli have been giants of Indian cricket – 2024 began with Sharma leading the team to their second World T20 title, and Kohli is comfortably placed among the all-time greats to have played the game.",
+            description: "Will the new year begin with the passing of the old guard?",
+            image: "https://static.toiimg.com/imagenext/toiblogs/photo/blogs/wp-content/uploads/2025/01/sports.png",
+        },
+        {
+            title: "I do what I want,” Australian tennis player Nick Kyrgios said after breaking Wimbledon’s all-white rule with red trainers in 2022. ",
+            description: "FIDE right on axing Carlsen from chess tournament. That said, dress codes are very silly ",
+            image: "https://th.bing.com/th?id=OSK.HERODTFSeFF-rpr54K-3sxB-NJtdjLok_6E1sxb52jsXcmY&w=312&h=200&c=15&rs=2&o=6&oif=webp&pid=SANGAM",
+        },
+        {
+            title: "India lost the recently concluded “pink-ball” test against Australia at the Adeliade Oval in the Border-Gavaskar Trophy, which enabled the Aussies to bounce back from a humiliating defeat in the first test at Perth",
+            description: "India lost the recently concluded “pink-ball” test against Australia at the Adeliade Oval in the Border-Gavaskar Trophy, which enabled the Aussies to bounce back from a humiliating defeat in the first test at Perth",
+            image: "https://th.bing.com/th/id/OIP._YuGqxYXN3b-U1p_w1VXzwAAAA?w=230&h=180&c=7&r=0&o=5&pid=1.7",
+        },
     ];
 
     return (
@@ -69,6 +84,7 @@ export const Mainpage = () => {
             
             <div className="bg-white text-black py-12 text-center px-6">
                 <p className="text-xl max-w-3xl mx-auto">Start publishing in minutes with the best platform for creators who want to blog.</p>
+                <p>&copy; 2025 Uday D</p> 
             </div>
         </>
     );
