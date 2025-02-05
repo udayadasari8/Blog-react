@@ -62,11 +62,11 @@ export const Mainpage = () => {
 
             <div className="flex flex-col p-6 w-full bg-gray-100 min-h-screen">
                 <h1 className="text-4xl font-bold mb-8 text-gray-800 text-center">Featured Blogs</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
                     {blogPosts.map((post, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all"
+                            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-105 hover:bg-green-400"
                         >
                         <Link to='/blogs'  > <img src= {post.image} alt={post.title} className="w-full h-48 object-cover" /> </Link>
                             <div className="p-5">
