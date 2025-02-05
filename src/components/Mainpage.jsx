@@ -46,15 +46,15 @@ export const Mainpage = () => {
                     <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center px-6">
                         <div>
                             <h2 className="text-2xl font-bold">A Powerful Platform</h2>
-                            <p className="mt-2 text-sm">Design, build, and grow your blog. Set up in minutes.</p>
+                            <p className="mt-2 text-sm">Step 1:Click on the Create Blog Button to create your first Blog</p>
                         </div>
                         <div>
                             <h2 className="text-2xl font-bold">Build Your Own Blog</h2>
-                            <p className="mt-2 text-sm">Amplify your voice and build Blogs!</p>
+                            <p className="mt-2 text-sm">Step-2:Now Click on the My Blogs section to view your Blog</p>
                         </div>
                         <div>
                             <h2 className="text-2xl font-bold">Earn Knowledge by Referring</h2>
-                            <p className="mt-2 text-sm">Blogs written by experts.</p>
+                            <p className="mt-2 text-sm">Step 3:You can Create,Edit and Delete your Blogs Note:That featured blogs are static only you can click them to redirect My Blogs</p>
                         </div>
                     </div>
                 </div>
